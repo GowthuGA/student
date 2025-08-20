@@ -1,0 +1,8 @@
+<h2>Edit Student</h2>
+<form method="post">
+  {% csrf_token %}
+  Name: <input type="text" name="name" value="{{ student.name }}"><br>
+  Age: <input type="number" name="age" value="{{ student.age }}"><br>
+  Email: <input type="email" name="email" value="{{ student.email }}"><br>
+  <button type="submit">Update</button>
+</form>
