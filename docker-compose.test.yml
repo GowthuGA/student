@@ -1,0 +1,8 @@
+services:
+  test:
+    build: .
+    environment:
+      DJANGO_TEST: "1"  # Use SQLite in-memory DB for tests
+    volumes:
+      - .:/app
+    command: pytest students/tests --cov=students --cov-report=term-missing

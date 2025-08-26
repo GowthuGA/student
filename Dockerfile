@@ -10,11 +10,15 @@ RUN apt-get update && apt-get install -y \
     default-libmysqlclient-dev \
     gcc \
     build-essential \
+    mariadb-client-compat \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy requirements folder (both base.txt and dev.txt)
+COPY requirements/ ./requirements/
+
+# Install dev/test dependencies
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements/dev.txt
 
 # Copy project files
 COPY . .
